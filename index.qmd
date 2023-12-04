@@ -15,7 +15,7 @@ about:
       href: https://github.com/bendesjardins
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume_11_10_23.pdf
+      href: https://bendesjardins.github.io/resume_11_10_23.pdf
     - icon: mailbox
       text: Email
       href: mailto:brd8@geneseo.edu
@@ -31,4 +31,10 @@ Jefferson Commnunity College \| Watertown, NY <br> A.S. in Mathematics \| Sep 20
 
 ## Experience
 
-job \| role \| start - end
+Watertown Savings Bank \| Bank Teller \| May 2023 - Present <br>
+
+American Eagle Outfitters \| Sales Associate \| Jul 2021 - Present <br>
+
+American Eagle Outfitters \| Assistant Merchandise Team Leader \| Apr 2022 - Jan 2023 <br>
+
+Jefferson Community College \| Peer Tutor \| Oct 2022 - Dec 2022 <br>
