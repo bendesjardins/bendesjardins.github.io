@@ -3,7 +3,7 @@
     "path": "~/DANL 200/bendesjardins.github.io/project.qmd",
     "project_path": "project.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "3321933468",
     "contents": "",
     "dirty": false,
     "created": 1701727556741.0,
@@ -11,14 +11,16 @@
     "relative_order": 4,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "70,28",
+        "scrollLine": "60"
     },
     "folds": "",
-    "lastKnownWriteTime": 1701726179,
+    "lastKnownWriteTime": 1701729799,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701726179,
+    "last_content_update": 1701729799980,
     "read_only": false,
     "read_only_alternatives": []
 }
