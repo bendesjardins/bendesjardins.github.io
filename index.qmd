@@ -9,7 +9,7 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com/b-r-desjardins
+      href: https://linkedin.com/b-r-desjardins/
     - icon: github
       text: GitHub
       href: https://github.com/bendesjardins
@@ -23,13 +23,15 @@ about:
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Benjamin DesJardins majors in Mathematics at SUNY Geneseo.
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Business Administration 
+B.A. in Data Analytics | Jan 2023 - Dec 2024 <br>
+
+State University of New York at Jefferson Commnunity College | Watertown, NY <br>
+A.S. in Mathematics | Sep 2020 - Dec 2022 <br>
 
 ## Experience
 
