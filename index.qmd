@@ -9,32 +9,26 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com/b-r-desjardins/
+      href: https://linkedin.com/in/b-r-desjardins/
     - icon: github
       text: GitHub
       href: https://github.com/bendesjardins
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: https://GITHUB_USERNAME.github.io/resume_11_10_23.pdf
     - icon: mailbox
       text: Email
       href: mailto:brd8@geneseo.edu
-
 ---
-
 
 Benjamin DesJardins majors in Mathematics at SUNY Geneseo.
 
 ## Education
 
-State University of New York at Geneseo | Geneseo, NY <br>
-B.A. in Data Analytics | Jan 2023 - Dec 2024 <br>
+State University of New York at Geneseo \| Geneseo, NY <br> B.A. in Data Analytics \| Jan 2023 - Dec 2024 <br>
 
-State University of New York at Jefferson Commnunity College | Watertown, NY <br>
-A.S. in Mathematics | Sep 2020 - Dec 2022 <br>
+Jefferson Commnunity College \| Watertown, NY <br> A.S. in Mathematics \| Sep 2020 - Dec 2022 <br>
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
-
-
+job \| role \| start - end
