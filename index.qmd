@@ -15,7 +15,7 @@ about:
       href: https://github.com/bendesjardins
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://bendesjardins.github.io/resume_11_10_23.pdf
+      href: https://bendesjardins.github.io/resume_12_2_23.pdf
     - icon: mailbox
       text: Email
       href: mailto:brd8@geneseo.edu

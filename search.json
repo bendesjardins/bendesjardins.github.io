@@ -7,6 +7,27 @@
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nDec 5, 2023\n\n\nBenjamin DesJardins\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nDec 4, 2023\n\n\nBenjamin DesJardins\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "danl-200-cw-10.html",
+    "href": "danl-200-cw-10.html",
+    "title": "danl-200-cw-10",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "danl-200-cw-10.html#quarto",
+    "href": "danl-200-cw-10.html#quarto",
+    "title": "danl-200-cw-10",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "danl-200-cw-10.html#running-code",
+    "href": "danl-200-cw-10.html#running-code",
+    "title": "danl-200-cw-10",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Benjamin DesJardins",
