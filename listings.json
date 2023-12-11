@@ -2,6 +2,7 @@
   {
     "listing": "/blog-listing.html",
     "items": [
+      "/posts/spotify/index.html",
       "/posts/nyc_rest/index.html",
       "/posts/welcome/index.html"
     ]

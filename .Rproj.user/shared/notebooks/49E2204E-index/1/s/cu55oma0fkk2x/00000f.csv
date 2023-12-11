@@ -1,0 +1,11 @@
+"0","spotify_all <- 
+  read_csv('https://bcdanl.github.io/data/spotify_all.csv')
+"
+"2","[1mRows: [22m[34m198005[39m [1mColumns: [22m[34m7[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (4): playlist_name, artist_name, track_name, album_name
+[32mdbl[39m (3): pid, pos, duration_ms"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

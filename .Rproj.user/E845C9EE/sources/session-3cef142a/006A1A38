@@ -3,22 +3,29 @@
     "path": "~/DANL 200/bendesjardins.github.io/quarto-template.qmd",
     "project_path": "quarto-template.qmd",
     "type": "quarto_markdown",
-    "hash": "2395204543",
+    "hash": "0",
     "contents": "",
-    "dirty": false,
+    "dirty": true,
     "created": 1701726844299.0,
     "source_on_save": false,
     "relative_order": 7,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1",
+        "cursorPosition": "0,0",
+        "scrollLine": "81",
+        "rmdVisualModeLocation": "613:436.6666564941406",
+        "rmdVisualCollapsedChunks": ""
     },
     "folds": "",
     "lastKnownWriteTime": 1701726706,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701726706,
+    "last_content_update": 1702329287842,
     "read_only": false,
     "read_only_alternatives": []
 }

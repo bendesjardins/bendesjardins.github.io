@@ -1,0 +1,7 @@
+"0","Q1a <- spotify_all %>% 
+  count(artist_name, track_name) %>% 
+  arrange(-n) %>% 
+  head(10)
+"
+"2","Error: object 'spotify_all' not found
+"
