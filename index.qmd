@@ -21,9 +21,7 @@ about:
       href: mailto:brd8@geneseo.edu
 ---
 
-Benjamin DesJardins majors in Mathematics at SUNY Geneseo, with a focus on 
-actuarial science. In his free time, Ben enjoys cooking, playing The Sims, and
-walking his two dogs.
+Benjamin DesJardins majors in Mathematics at SUNY Geneseo, with a focus on actuarial science. In his free time, Ben enjoys cooking, playing The Sims, and walking his two dogs.
 
 ## Education
 

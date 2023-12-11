@@ -1,0 +1,96 @@
+library(tidyverse)
+library(skimr)
+
+
+# Question 1 --------------------------------------------------------------
+
+restaurant <- 
+  read_csv('https://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv')
+view(restaurant)
+
+#Q1a What are the mean, standard deviation, first quartile, median, third 
+#    quartile, and maximum of SCORE for each GRADE of restaurants?
+
+scorePerGrade <- restaurant %>% 
+  group_by(restaurant$GRADE) %>% 
+  summarize(
+    score_mean = mean(SCORE),
+    score_sd = sd(SCORE),
+    score_min = min(SCORE),
+    score_q1 = quantile(SCORE, probs = .25),
+    score_median = median(SCORE),
+    score_q1 = quantile(SCORE, probs = .75),
+    score_max = max(SCORE) )
+
+#Q1b How many restaurants with a GRADE of A are there in NYC?
+#     How much percentage of restaurants in NYC are a GRADE of C?
+
+numObs <- restaurant %>% 
+  group_by(GRADE) %>% 
+  summarize( number = n())
+#16305 with a grade of A
+
+294 / sum(numObs$number) * 100 
+#Percentage with grade C
+
+#Q1c Provide both (1) ggplot code and (2) a simple comment to describe how the 
+#    distribution of SCORE varies by GRADE and CRITICAL FLAG.
+
+ggplot( data = restaurant) +
+  geom_histogram(aes(x = SCORE, fill = restaurant$`CRITICAL FLAG`), bins = 50) +
+  facet_grid(. ~ GRADE)
+#Critical makes up the majority of each grade, and those with the grade A
+# has the highest and most varied scores, those with grade C have much larger
+# scores
+
+#Q1d Provide both (1) ggplot code and (2) a simple comment to describe how the 
+#  proportion of CRITICAL FLAG varies by GRADE and BORO.
+
+ggplot(data = restaurant) + 
+  geom_bar(aes(x = GRADE, fill = BORO)) +
+  facet_wrap(. ~ `CRITICAL FLAG`)
+#Staten Island and Bronx make up the smallest proportions of boroughs.  
+# Manhattan makes up the largest proportion of each grade. 
+# Critical and Not Critical have very similar distributions. 
+
+#Q1e For the 10 most common CUISINE DESCRIPTION values, find the CUISINE 
+# DESCRIPTION value that has the highest proportion of GRADE A.
+
+cuiseDescrip <-  restaurant %>% 
+  group_by(`CUISINE DESCRIPTION`) %>%
+  summarise(count = n()) %>% 
+  arrange(-count) %>% 
+  mutate()
+
+head(cuiseDescrip, 10)
+
+#Q1f Find the 3 most common names of restaurants (DBA) in each BORO.
+# If the third most common DBA values are multiple, please include all 
+# the DBA values.
+
+for(i in c("Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island")) {
+  nameRestBoro <- restaurant %>% 
+  filter(BORO == i) %>% 
+  group_by(DBA) %>% 
+  summarise(count = n()) %>% 
+  arrange(-count)
+  print(i)
+  print(head(nameRestBoro, 3))
+  } 
+
+
+nameRestNYC <- restaurant %>% 
+  group_by(DBA) %>% 
+  summarise(count = n()) %>% 
+  arrange(-count)
+head(nameRestNYC, 10)
+
+#dunkin is the most common DBA
+
+#Q1g For all the DBA values that appear in the result of Q1f, find the DBA 
+# value that is most likely to commit critical violation.
+
+criticalVio <- restaurant %>% 
+  filter(DBA == "dunkin") %>% 
+  group_by(`CRITICAL FLAG`)
+
