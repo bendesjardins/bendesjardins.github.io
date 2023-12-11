@@ -9,4 +9,31 @@ Analyze the `DOHMH_NYC_Restaurant_Inspection.csv` data.
 
 ![](thumbnail.jpg)
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+Q1a) What are the mean, standard deviation, first quartile, median, 
+third quartile, and maximum of SCORE for each GRADE of restaurants?
+```{r}
+scorePerGrade <- restaurant %>% 
+  group_by(restaurant$GRADE) %>% 
+  summarize(
+    score_mean = mean(SCORE),
+    score_sd = sd(SCORE),
+    score_min = min(SCORE),
+    score_q1 = quantile(SCORE, probs = .25),
+    score_median = median(SCORE),
+    score_q1 = quantile(SCORE, probs = .75),
+    score_max = max(SCORE) )
+```
+
+Q1b) How many restaurants with a GRADE of A are there in NYC? 
+How much percentage of restaurants in NYC are a GRADE of C?
+```{r}
+numObs <- restaurant %>% 
+  group_by(GRADE) %>% 
+  summarize( number = n())
+```
+16305 with a grade of A
+
+```{r}
+294 / sum(numObs$number) * 100 
+```
+Percentage with grade C
