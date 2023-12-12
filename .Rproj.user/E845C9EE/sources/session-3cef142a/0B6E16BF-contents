@@ -50,7 +50,8 @@ theme_set(theme_ipsum()+
 About this project :clap:
 
 ```{r}
-1 + 1
+
+
 ```
 
 
