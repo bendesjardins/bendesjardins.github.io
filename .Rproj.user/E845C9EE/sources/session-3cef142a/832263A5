@@ -1,9 +1,9 @@
 {
     "id": "832263A5",
-    "path": "~/DANL 200/bendesjardins.github.io/posts/beer_market/index.qmd",
-    "project_path": "posts/beer_market/index.qmd",
+    "path": "~/DANL 200/danl200_hw5_desjardins_benjamin.qmd",
+    "project_path": null,
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "1386950077",
     "contents": "",
     "dirty": false,
     "created": 1702334427024.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "12,6",
-        "scrollLine": "10"
+        "cursorPosition": "11,57",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1702339356,
+    "lastKnownWriteTime": 1702389153,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1702339356767,
+    "last_content_update": 1702389153527,
     "read_only": false,
     "read_only_alternatives": []
 }

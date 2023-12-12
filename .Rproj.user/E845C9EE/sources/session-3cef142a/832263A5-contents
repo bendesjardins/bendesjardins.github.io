@@ -5,9 +5,11 @@ date: "2023-12-11"
 categories: [news]
 ---
 
-Analyze the `beer_markets.csv` data.
+Analyze the `NFL2022_stuffs.csv` data.
 
 ![](thumbnail.jpg)
+
+https://github.com/bendesjardins/bendesjardins.github.io 
 
 # Question 2
 ```{r}
@@ -75,3 +77,25 @@ Provide both (1) a single ggplot and (2) a simple comment to describe the NFL we
   `"J.Allen"`
   `"P.Mahomes"`
 
+```{r}
+passers <- c("J.Allen","P.Mahomes")
+q2e <- NFL2022_stuffs_EPA %>% 
+  filter(passer %in% passers) %>% 
+  group_by(passer, week) %>% 
+  summarise(mean = mean(epa))
+  
+
+ggplot(q2e, aes(x = week, y = mean, color = passer)) +
+  geom_line() +
+  geom_point()
+```
+Overall, P.Mahomes has a higher average EPA for most weeks of the NFL. J.Allen
+has some of the lowest EPA's for each week. 
+
+# Q2f
+
+Calculate the difference between the mean value of epa for "J.Allen" the mean 
+value of epa for "P.Mahomes" for each value of week.
+```
+ 
+ 
