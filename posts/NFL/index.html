@@ -9,7 +9,7 @@
 <meta name="author" content="Benjamin DesJardins">
 <meta name="dcterms.date" content="2023-12-11">
 
-<title>BENJAMIN DESJARDINS - NFL in 2022</title>
+<title>BENJAMIN DESJARDINS - Beer Market</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">NFL in 2022</h1>
+      <h1 class="title">Beer Market</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
               </div>
@@ -181,8 +181,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Analyze the <code>beer_markets.csv</code> data.</p>
 <p><img src="thumbnail.jpg" class="img-fluid"></p>
-<section id="question-2" class="level1">
-<h1>Question 2</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -198,87 +196,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>NFL2022_stuffs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://bcdanl.github.io/data/NFL2022_stuffs.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>beer_mkts <span class="ot">&lt;-</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">'https://bcdanl.github.io/data/beer_markets.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 50147 Columns: 10
+<pre><code>Rows: 73115 Columns: 24
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr (2): game_id, posteam
-dbl (8): play_id, drive, week, qtr, down, half_seconds_remaining, pass, wp
+chr (13): _purchase_desc, brand, container, market, buyertype, income, age, ...
+dbl  (5): hh, quantity, dollar_spent, beer_floz, price_per_floz
+lgl  (6): promo, childrenUnder6, children6to17, microwave, dishwasher, singl...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-</section>
-<section id="q2a" class="level1">
-<h1>Q2a</h1>
-<p>In data.frame, NFL2022_stuffs, remove observations for which values of posteam is missing.</p>
+<section id="q1a" class="level1">
+<h1>Q1a</h1>
+<p>Find the top 5 markets in terms of the total beer_floz. Find the top 5 markets in terms of the total beer_floz of BUD LIGHT. Find the top 5 markets in terms of the total beer_floz of BUSCH LIGHT. Find the top 5 markets in terms of the total beer_floz of COORS LIGHT. Find the top 5 markets in terms of the total beer_floz of MILLER LITE. Find the top 5 markets in terms of the total beer_floz of NATURAL LIGHT.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>NFL2022_stuffs <span class="ot">&lt;-</span> NFL2022_stuffs <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(posteam))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Q2a1 <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(market) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(<span class="at">beer_floz_tot =</span> <span class="fu">sum</span>(beer_floz, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">arrange</span>(<span class="sc">-</span>beer_floz_tot) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>Q2a_bud <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(brand <span class="sc">==</span> <span class="st">"BUD LIGHT"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(market) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">beer_floz_tot =</span> <span class="fu">sum</span>(beer_floz, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>beer_floz_tot) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Q2a_busch <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(brand <span class="sc">==</span> <span class="st">"BUSCH LIGHT"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(market) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">beer_floz_tot =</span> <span class="fu">sum</span>(beer_floz, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>beer_floz_tot) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>Q2a_coors <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(brand <span class="sc">==</span> <span class="st">"COORS LIGHT"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(market) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">beer_floz_tot =</span> <span class="fu">sum</span>(beer_floz, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>beer_floz_tot) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>Q2a_miller <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(brand <span class="sc">==</span> <span class="st">"MILLER LITE"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(market) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">beer_floz_tot =</span> <span class="fu">sum</span>(beer_floz, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>beer_floz_tot) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>Q2a_natural <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(brand <span class="sc">==</span> <span class="st">"NATURAL LIGHT"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(market) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">beer_floz_tot =</span> <span class="fu">sum</span>(beer_floz, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>beer_floz_tot) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="q2b" class="level1">
 <h1>Q2b</h1>
-<p>Summarize the mean value of pass for each posteam when all the following conditions hold: <code>wp</code> is greater than 20% and less than 75%; <code>down</code> is less than or equal to 2; and <code>half_seconds_remaining</code> is greater than 120.</p>
+<p>For households that purchased BUD LIGHT at least once, what fraction of households did purchase only BUD LIGHT?</p>
+<p>For households that purchased BUSCH LIGHT at least once, what fraction of households did purchase only BUSCH LIGHT?</p>
+<p>For households that purchased COORS LIGHT at least once, what fraction of households did purchase only COORS LIGHT?</p>
+<p>For households that purchased MILLER LITE at least once, what fraction of households did purchase only MILLER LITE?</p>
+<p>For households that purchased NATURAL LIGHT at least once, what fraction of households did purchase only NATURAL LIGHT?</p>
+<p>Which beer brand does have the largest proportion of such loyal consumers?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>q2b <span class="ot">&lt;-</span> NFL2022_stuffs <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wp <span class="sc">&gt;</span> .<span class="dv">2</span> <span class="sc">&amp;</span> wp <span class="sc">&lt;</span>.<span class="dv">75</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(down <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(half_seconds_remaining <span class="sc">&gt;</span> <span class="dv">120</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(posteam) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_pass =</span> <span class="fu">mean</span>(pass))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>q2b <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bud =</span> <span class="fu">ifelse</span>(brand<span class="sc">==</span><span class="st">"BUD LIGHT"</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="co"># 1 if brand=="BUD LIGHT"; 0 otherwise</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">busch =</span> <span class="fu">ifelse</span>(brand<span class="sc">==</span><span class="st">"BUSCH LIGHT"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">coors =</span> <span class="fu">ifelse</span>(brand<span class="sc">==</span><span class="st">"COORS LIGHT"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">miller =</span> <span class="fu">ifelse</span>(brand<span class="sc">==</span><span class="st">"MILLER LITE"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">natural =</span> <span class="fu">ifelse</span>(brand<span class="sc">==</span><span class="st">"NATURAL LIGHT"</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">.after =</span> hh) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hh<span class="sc">:</span>natural) <span class="sc">%&gt;%</span>  <span class="co"># select the variables we need</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hh) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_transactions =</span> <span class="fu">n</span>(), <span class="co"># number of beer transactions for each hh</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_bud =</span> <span class="fu">sum</span>(bud), <span class="co"># number of BUD LIGHT transactions for each hh</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_busch =</span> <span class="fu">sum</span>(busch), </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_coors =</span> <span class="fu">sum</span>(coors), </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_miller =</span> <span class="fu">sum</span>(miller), </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_natural =</span> <span class="fu">sum</span>(natural) </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">loyal_bud =</span> <span class="fu">sum</span>(n_transactions <span class="sc">==</span> n_bud) <span class="sc">/</span> <span class="fu">sum</span>(n_bud <span class="sc">&gt;</span> <span class="dv">0</span>), </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>              <span class="co"># sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>              <span class="co"># sum(n_bud &gt; 0) : the number of households that purchased BUD LIGHT at least once.</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">loyal_busch =</span> <span class="fu">sum</span>(n_transactions <span class="sc">==</span> n_busch) <span class="sc">/</span> <span class="fu">sum</span>(n_busch <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">loyal_coors =</span> <span class="fu">sum</span>(n_transactions <span class="sc">==</span> n_coors) <span class="sc">/</span> <span class="fu">sum</span>(n_coors <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">loyal_miller =</span> <span class="fu">sum</span>(n_transactions <span class="sc">==</span> n_miller) <span class="sc">/</span> <span class="fu">sum</span>(n_miller <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">loyal_natural =</span> <span class="fu">sum</span>(n_transactions <span class="sc">==</span> n_natural) <span class="sc">/</span> <span class="fu">sum</span>(n_natural <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="q2c" class="level1">
 <h1>Q2c</h1>
-<p>Provide both (1) a ggplot code with geom_point() using the resulting data.frame in Q2b and (2) a simple comments to describe the mean value of pass for each posteam. In the ggplot, reorder the posteam categories based on the mean value of pass in ascending or in descending order.</p>
+<p>For each household, calculate the number of beer transactions. For each household, calculate the proportion of each beer brand choice.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>q2c <span class="ot">&lt;-</span> q2b <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_pass))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(q2c) <span class="sc">+</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(posteam, <span class="sc">-</span>mean_pass), <span class="at">y =</span> mean_pass))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>q2c <span class="ot">&lt;-</span> beer_mkts <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(hh, brand) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hh) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n_tot =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span>  <span class="co"># n_tot : the number of beer transactions</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(hh, brand) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">prop =</span> n <span class="sc">/</span> n_tot ) <span class="co"># prop: the proportion of each beer brand choice</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section>
-<section id="q2d" class="level1">
-<h1>Q2d</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>NFL2022_epa <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://bcdanl.github.io/data/NFL2022_epa.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 46427 Columns: 7
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (4): game_id, posteam, receiver, passer
-dbl (3): play_id, drive, epa
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-<p>Create the data.frame, NFL2022_stuffs_EPA, that includes</p>
-<p>All the variables in the data.frame, NFL2022_stuffs; The variables, passer, receiver, and epa, from the data.frame, NFL2022_epa. by joining the two data.frames. In the resulting data.frame, NFL2022_stuffs_EPA, remove observations with NA in passer.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>NFL2022_stuffs_EPA <span class="ot">&lt;-</span> NFL2022_stuffs <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(NFL2022_epa, <span class="at">by =</span> <span class="st">"game_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in left_join(., NFL2022_epa, by = "game_id"): Detected an unexpected many-to-many relationship between `x` and `y`.
-ℹ Row 1 of `x` matches multiple rows in `y`.
-ℹ Row 1 of `y` matches multiple rows in `x`.
-ℹ If a many-to-many relationship is expected, set `relationship =
-  "many-to-many"` to silence this warning.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>NFL2022_stuffs_EPA <span class="ot">&lt;-</span> NFL2022_stuffs_EPA <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(passer))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="q2e" class="level1">
-<h1>Q2e</h1>
-<p>Provide both (1) a single ggplot and (2) a simple comment to describe the NFL weekly trend of weekly mean value of epa for each of the following two passers, <code>"J.Allen"</code> <code>"P.Mahomes"</code></p>
 
 
 </section>

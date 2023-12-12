@@ -1,26 +1,26 @@
 {
-    "id": "FAFCD9CC",
+    "id": "832263A5",
     "path": "~/DANL 200/bendesjardins.github.io/posts/beer_market/index.qmd",
     "project_path": "posts/beer_market/index.qmd",
     "type": "quarto_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1702332682674.0,
+    "created": 1702334427024.0,
     "source_on_save": false,
-    "relative_order": 13,
+    "relative_order": 12,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "4,18",
-        "scrollLine": "0"
+        "cursorPosition": "12,6",
+        "scrollLine": "10"
     },
     "folds": "",
-    "lastKnownWriteTime": 1702333669,
+    "lastKnownWriteTime": 1702339356,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1702333669771,
+    "last_content_update": 1702339356767,
     "read_only": false,
     "read_only_alternatives": []
 }
