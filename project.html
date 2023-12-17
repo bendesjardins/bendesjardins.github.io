@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Data</h1>
-<p>The data.frame <code>nyc_estate</code> is a set of data that is a record of every building or building unit (apartment, etc.) sold in the New York City property market over a 12-month period. It is available at <a href="https://www.kaggle.com/datasets/new-york-city/nyc-property-sales">https://www.kaggle.com/datasets/new-york-city/nyc-property-sales</a> for free use.</p>
+<p>The data.frame <code>nyc_estate</code> is a set of data that is a record of every building or building unit (apartment, etc.) sold in the New York City property market over a 12-month period. It is available at <a href="https://www.kaggle.com/datasets/new-york-city/nyc-property-sales" class="uri">https://www.kaggle.com/datasets/new-york-city/nyc-property-sales</a> for free use.</p>
 <section id="summary-statistics" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">2.1</span> Summary Statistics</h2>
 <div class="cell">
@@ -262,14 +262,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="sale-price-versus-tax-class-at-time-of-sale"><span class="header-section-number">2.3.1</span> Sale Price versus Tax Class At Time of Sale</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> clean_sale) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(<span class="fu">as.numeric</span>(<span class="st">`</span><span class="at">SALE PRICE</span><span class="st">`</span>)), <span class="at">color =</span> <span class="st">`</span><span class="at">TAX CLASS AT TIME OF SALE</span><span class="st">`</span>), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(. <span class="sc">~</span> <span class="st">`</span><span class="at">TAX CLASS AT TIME OF SALE</span><span class="st">`</span>, <span class="at">scales =</span> <span class="st">'free'</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Log of `SALE PRICE`"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(<span class="fu">as.numeric</span>(<span class="st">`</span><span class="at">SALE PRICE</span><span class="st">`</span>)), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> <span class="st">`</span><span class="at">TAX CLASS AT TIME OF SALE</span><span class="st">`</span>), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(. <span class="sc">~</span> <span class="st">`</span><span class="at">TAX CLASS AT TIME OF SALE</span><span class="st">`</span>, <span class="at">scales =</span> <span class="st">'free'</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Log of `SALE PRICE`"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="project_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="864"></p>
 </div>
 </div>
 <p>They all have some resemblance of a normal distribution, with those at a tax class of <code>2</code> having the most normal distribution. Those in the <code>4</code> class has the most skewed data with many outliers in proportion to the rest of those in <code>1</code> and <code>2</code>.</p>
+</section>
+<section id="sale-price-versus-year-built" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="sale-price-versus-year-built"><span class="header-section-number">2.3.2</span> Sale Price versus Year Built</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clean_year_sale <span class="ot">&lt;-</span> clean_sale <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(<span class="st">`</span><span class="at">YEAR BUILT</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> clean_year_sale) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(<span class="fu">as.numeric</span>(<span class="st">`</span><span class="at">SALE PRICE</span><span class="st">`</span>)), <span class="at">y =</span> <span class="st">`</span><span class="at">YEAR BUILT</span><span class="st">`</span>), <span class="at">alpha =</span> .<span class="dv">02</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1900</span>, <span class="dv">2020</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="864"></p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">as.numeric</span>(clean_year_sale<span class="sc">$</span><span class="st">`</span><span class="at">SALE PRICE</span><span class="st">`</span>), clean_year_sale<span class="sc">$</span><span class="st">`</span><span class="at">YEAR BUILT</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.006318972</code></pre>
+</div>
+</div>
+<p>As the figure shows, there is very little correlation between year built and sale price. If we take the correlation value between them, we get less than 0.01 which means there is essentially no correlation.</p>
+</section>
+<section id="tax-class-at-time-of-sale-versus-year-built" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="tax-class-at-time-of-sale-versus-year-built"><span class="header-section-number">2.3.3</span> Tax Class at Time of Sale versus Year Built</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> clean_year) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">YEAR BUILT</span><span class="st">`</span>), <span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(. <span class="sc">~</span> <span class="st">`</span><span class="at">TAX CLASS AT TIME OF SALE</span><span class="st">`</span>) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1900</span>, <span class="dv">2020</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
 
 
 </section>
