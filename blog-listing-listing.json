@@ -1,0 +1,10 @@
+{
+  "listing": "/blog-listing.html",
+  "items": [
+    "/posts/spotify/index.html",
+    "/posts/nyc_rest/index.html",
+    "/posts/beer_market/index.html",
+    "/posts/NFL/index.html",
+    "/posts/welcome/index.html"
+  ]
+}
